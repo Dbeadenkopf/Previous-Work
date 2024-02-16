@@ -1,0 +1,8 @@
+*.tfstate*
+*/.terraform/
+*.terraform*
+terraform.log
+*.retry
+.DS_Store
+.idea/
+../express_java

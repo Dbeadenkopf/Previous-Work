@@ -1,0 +1,47 @@
+import React, {useState} from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { StringMappingType } from 'typescript';
+import List from './List';
+import AddToList from './AddToList'
+
+
+//since we dont know the type we have to make an inferface object
+// of type arrary, we will export this so we dont have
+// to define another interface
+export interface IState {
+  people: {
+    name: string,
+    age: number,
+    url: string,
+    note?: string,
+  }[]
+}
+
+
+function App() {
+  // we will make our use state hook, which will
+  // be an arrary of objects to hold the people
+
+  const [people, setPeople] = useState<IState["people"]>([
+    {
+      name: "Lamar Jackson",
+      url: "data:image/jpeg;base64,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",
+      age: 25,
+      note: "One of only two Unanimous MVPs"
+    }
+  ]) // lets start with an empty arrary
+
+  
+ // lets test outselves
+
+  return (
+    <div className="App">
+     <h1>Ultimate QB Tier Maker</h1>
+     <List people={people}/>  
+     <AddToList people={people} setPeople={setPeople}/>
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,41 @@
+/* this will contain all the stares and perform the css code */
+
+/* lets target the main clock container */
+/* below is the main constructor of the container*/
+.clock {
+    background: #333333;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+.glow {
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+/*The code below changeds the numbers and letters of am and pm
+to a san-serif font size 30 color white/light */
+.clock-time,
+.clock-ampm {
+    font-family: sans-serif;
+    font-size: 30px;
+    color: #eeeeee;
+}
+
+/* I want to change the font below of Pm and am*/ 
+.clock-time {
+    font-size: 48px;
+}

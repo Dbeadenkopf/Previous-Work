@@ -1,0 +1,23 @@
+---
+
+- name: USER-ADD | Add User
+  user:
+    name: '{{ user }}'
+    group: wheel
+    shell: /bin/bash
+    createhome: true
+    append: true
+
+- name: USER-ADD | Add to sudoers
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^{{ user }} '
+    line: '{{ user }}            ALL=(ALL)       NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+
+- name: USER-ADD | Set authorized key
+  authorized_key:
+    user: '{{ user }}'
+    key: '{{ key }}'
+    state: present

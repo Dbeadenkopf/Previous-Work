@@ -1,0 +1,18 @@
+---
+- hosts: web-servers
+  become: yes
+  become_user: root
+  tasks:
+    - name: Copy repository to remote server
+      copy:
+        src: mongodb-org-5.0.repo
+        dest: /etc/yum.repos.d/
+    - name: Install mongodb-org package
+      yum:
+        name: mongodb-org
+        state: present
+
+    - name: Start the service
+      service:
+        name: mongod
+        state: started

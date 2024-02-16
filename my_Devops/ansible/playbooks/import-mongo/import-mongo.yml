@@ -1,0 +1,27 @@
+---
+- hosts: web-servers
+  tasks:
+    - name: Create database
+      community.mongodb.mongodb_shell:
+        login_user: "daveAdmin"
+        login_password: "TheFlock#08"
+        db: "HorrorDB"
+        eval: "db.createCollection('HorrorMovies')"
+    - name: importing Data into mongo db
+      community.mongodb.mongodb_shell:
+        login_user: "daveAdmin"
+        login_password: "TheFlock#08"
+        db: "HorrorDB"
+        eval: "db.HorrorMovies.insertOne({title: 'The Thing', year: 1983})"
+    - name: importing Data into mongo db
+      community.mongodb.mongodb_shell:
+        login_user: "daveAdmin"
+        login_password: "TheFlock#08"
+        db: "HorrorDB"
+        eval: "db.HorrorMovies.insertOne({title: 'Scream', year: 1998})"
+    - name: importing Data into mongo db
+      community.mongodb.mongodb_shell:
+        login_user: "daveAdmin"
+        login_password: "TheFlock#08"
+        db: "HorrorDB"
+        eval: "db.HorrorMovies.insertOne({title: 'PumpkinHead', year: 1995})"

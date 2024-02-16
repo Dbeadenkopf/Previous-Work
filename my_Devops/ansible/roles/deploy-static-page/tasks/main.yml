@@ -1,0 +1,20 @@
+---
+  - name: DEPLOY STATIC PAGE | COPY CONFIG FILE
+    template:
+      src=files/static_conf.j2
+      dest=/etc/nginx/conf.d/{{config_file_name}}
+      owner=nginx
+      group=nginx
+
+  - name: DEPLOY STATIC PAGE | COPY HTML
+    copy:
+       src={{index_path}}
+       dest=/var/www/{{config_directory}}/
+       owner=nginx
+       group=nginx
+       
+
+  - name: DEPLOY STATIC PAGE | RESTART NGINX
+    service:
+      name=nginx
+      state=restarted

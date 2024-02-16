@@ -1,0 +1,20 @@
+---
+- hosts: web-servers
+  become: yes
+  remote_user: centos
+  tasks:
+    - name: Making directory for ansible
+      file:
+        path: /Documents/horrorDB
+        state: directory
+    - name: Get data
+      community.mongodb.mongodb_shell:
+        debug: yes
+        db: "HorrorDB"
+        eval: "db.HorrorMovies.find({title: 'The Thing', year: 1983})"
+      register: queryResult
+    - name: Print some data
+      debug:
+        msg: "{{ queryResult.out }}"
+    - name: Save query results to created directory
+      copy: content="{{ queryResult.out}}" dest=/Documents/horrorDB/horrorMovies.json

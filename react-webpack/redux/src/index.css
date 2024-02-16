@@ -1,0 +1,68 @@
+body {
+    background-color: #282c34;
+    min-height: 100vh;
+  }
+  
+  .login {
+    margin: auto;
+    margin-top: 10em;
+    width: 350px;
+    background: beige;
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 50px;
+  }
+  
+  .login input {
+    border-width: 0 0 3px;
+    color: darkslategray;
+    font-size: 16px;
+    outline: 0;
+    overflow-x: hidden;
+    padding: 3px;
+    width: 200px;
+    display: block;
+    margin: auto;
+  }
+  
+  .login input:last-of-type {
+    margin-top: 15px;
+  }
+  
+  .login input[type="submit"] {
+    margin-top: 25px;
+    background: aquamarine;
+    color: black;
+    border-width: 0;
+    border: 1px solid cadetblue;
+    width: 125px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .login input[type="submit"]:hover {
+    background: aqua;
+  }
+  
+  .userHome h1 {
+    text-align: center;
+    color: beige;
+    margin-top: 5em;
+  }
+  
+  .userHome button {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    font-weight: 900;
+    font-size: 12px;
+    background: chocolate;
+    border: 1px solid chocolate;
+    cursor: pointer;
+  }
+  
+  .userHome button:hover {
+    background: crimson;
+  }
+
+  

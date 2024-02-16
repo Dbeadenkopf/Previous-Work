@@ -1,0 +1,42 @@
+
+
+{
+  "name": "t1cg.redux.sample",
+  "version": "0.0.1",
+  "description": "T1CG Redux Sample",
+  "main": "index.jsx",
+  "author": "t1cg",
+  "license": "ISC",
+  "scripts": {
+    "start": "webpack-dev-server --config-register @babel/register --mode development --display-error-details --config ./webpack.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "copy-webpack-plugin": "^5.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.28.4",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "redux-saga": "^1.1.1"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ]
+}

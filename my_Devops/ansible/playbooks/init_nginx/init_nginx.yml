@@ -1,0 +1,5 @@
+---
+- hosts: web-servers
+  become: true
+  roles:
+    - role: ../../roles/install-nginx

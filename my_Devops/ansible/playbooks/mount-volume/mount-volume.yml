@@ -1,0 +1,15 @@
+---
+- hosts: web-servers
+  become: yes
+  become_user: root
+  tasks:
+    - name: Mount-Volume xfs file system
+      community.general.filesystem:
+        fstype: xfs
+        dev: /dev/xvdh
+    - name: Mount mongo
+      ansible.posix.mount:
+        path: /mnt/mongoVolume
+        src: /dev/xvdh
+        fstype: xfs
+        state: mounted
