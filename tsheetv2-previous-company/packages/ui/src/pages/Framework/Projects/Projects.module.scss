@@ -1,0 +1,54 @@
+.projects {
+  width: 60%;
+  margin: auto;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.projectLogo {
+  font-size: 25px;
+}
+
+.logoText {
+  font-size: 15px;
+  color: $t1cgGrey;
+}
+
+.addNewProject {
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+.newProjectInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+
+  .inputField {
+    display: flex;
+    justify-content: center;
+  }
+
+  .leadDropdown {
+    display: flex;
+    justify-content: center;
+  }
+
+  .addButtonContainer {
+    display: flex;
+    justify-content: center;
+    .addProjectButton {
+      width: 125px;
+    }
+  }
+
+  transition: color 0.2s;
+}
+
+.addNewProjectText {
+  margin-left: 10px;
+}

@@ -1,0 +1,2 @@
+@projectLabel = "ISP"
+GET {{host}}/tickets/?projectLabel={{projectLabel}}

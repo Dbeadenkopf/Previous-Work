@@ -1,0 +1,95 @@
+name: Manual Build Tag Push
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: Image tag
+        required: true
+        default: sprint
+jobs:
+  manual_btp:
+    runs-on: [t1cgaws]
+    outputs:
+      success: ${{ steps.success.outputs.success }}
+      failure: ${{ steps.failure.outputs.failure }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.T1CG_UTIL_TOKEN }}
+      - uses: actions/checkout@v3
+        with:
+          repository: t1cg/shared-gh-actions
+          ref: master
+          token: ${{secrets.T1CG_UTIL_TOKEN}}
+          path: .github/actions/shared-gh-actions
+      - name: UI BTP
+        uses: ./.github/actions/shared-gh-actions/btp
+        with:
+          ECR_REPOSITORY: tsheetv2-ui
+          DOCKERFILE_PATH: packages/ui/Docker/Dockerfile.k8s
+          PR_TO_MASTER: true
+          HOTFIX: true
+          NEW_VERSION: ${{ github.event.inputs.image_tag }}
+          T1CG_UTIL_TOKEN: ${{ secrets.T1CG_UTIL_TOKEN }}
+      - name: API BTP
+        uses: ./.github/actions/shared-gh-actions/btp
+        with:
+          ECR_REPOSITORY: tsheetv2-api
+          DOCKERFILE_PATH: packages/api/Docker/Dockerfile.k8s
+          PR_TO_MASTER: true
+          HOTFIX: true
+          NEW_VERSION: ${{ github.event.inputs.image_tag }}
+          T1CG_UTIL_TOKEN: ${{ secrets.T1CG_UTIL_TOKEN }}
+
+      #################
+      ## SUCCESS OUTPUT
+      #################
+      - if: success()
+        run: echo "::set-output name=success::true"
+        id: success
+      - if: failure()
+        run: echo "::set-output name=failure::true"
+        id: failure
+
+  #################
+  ## POST STEPS
+  #################
+  Notify:
+    needs: [manual_btp]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: t1cg/shared-gh-actions
+          ref: master
+          token: ${{secrets.T1CG_UTIL_TOKEN}}
+          path: .github/actions/shared-gh-actions
+      ### POST ACTION
+      - name: Get Slack ID
+        if: always()
+        id: slackID
+        uses: ./.github/actions/shared-gh-actions/getSlackId
+        with:
+          gh-user: ${{ github.actor }}
+      ## SUCCESS
+      - name: Success Slack Message
+        if: contains(needs.manual_btp.outputs.success, 'true')
+        uses: ./.github/actions/shared-gh-actions/slackMsg
+        with:
+          to: "@${{ steps.slackId.outputs.slackId }}"
+          text: "Manual Build Tag Push Finished :thumbsup:"
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          color: "success"
+          buttonLink: "https://github.com/t1cg/tsheetv2/actions/runs/${{ github.run_id }}"
+      ## FAIL
+      - name: Fail Slack Message
+        if: contains(needs.manual_btp.outputs.failure, 'true')
+        uses: ./.github/actions/shared-gh-actions/slackMsg
+        with:
+          to: "@${{ steps.slackId.outputs.slackId }}"
+          text: "Manual Build Tag Push Failed :scream:"
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          color: "fail"
+          buttonLink: "https://github.com/t1cg/tsheetv2/actions/runs/${{ github.run_id }}"

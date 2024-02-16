@@ -1,0 +1,28 @@
+.employees {
+  width: 70%;
+  margin: auto;
+}
+
+.title {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.padding {
+  padding: 10px 50px 10px 50px;
+}
+
+.table {
+  background-color: $t1cgGrey;
+  border-radius: $mediumBorderRadius;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.button {
+  font-weight: bold;
+  width: 75px;
+  border-radius: $mediumBorderRadius;
+}

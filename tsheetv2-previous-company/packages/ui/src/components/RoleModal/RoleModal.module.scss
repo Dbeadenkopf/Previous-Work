@@ -1,0 +1,86 @@
+.inputsContainer {
+  padding-top: 20px;
+}
+
+.singleInputContainer {
+  width: 225px;
+  margin: 0 auto;
+
+  input {
+    margin-left: 0;
+  }
+}
+
+.singleTextAreaContainer {
+  width: 225px;
+  margin: 0 auto;
+}
+
+.inputLabel {
+  font-weight: bold;
+}
+
+.permissionsContainer {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.roleHeader {
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.permissionsInputContainer {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  width: 225px;
+  margin: 0 auto;
+}
+
+.submitBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  padding-bottom: 20px;
+}
+
+.addPermission {
+  cursor: pointer;
+  margin-left: 10px;
+  &:hover {
+    opacity: 0.6;
+  }
+  margin-top: 25px;
+}
+
+.addPermissionDisabled {
+  margin-left: 10px;
+  pointer-events: none;
+  color: #c3c3c3;
+  margin-top: 25px;
+}
+
+.permissionList {
+  margin-top: 10px;
+  width: 225px;
+
+  li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      word-break: break-all;
+    }
+
+    i:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}
+
+.permissionItem {
+  margin-left: 15px;
+}

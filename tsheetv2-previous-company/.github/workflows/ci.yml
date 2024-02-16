@@ -1,0 +1,193 @@
+name: CI
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+      - main
+jobs:
+  #~~~~~~~~~~~~~~~~~~~~~~#
+  #        CHECKS        #
+  #~~~~~~~~~~~~~~~~~~~~~~#
+  Checks:
+    runs-on: ubuntu-latest
+    outputs:
+      ui: ${{ steps.changes.outputs.ui }}
+      api: ${{ steps.changes.outputs.api }}
+      version: ${{ steps.version.outputs.version }}
+      success: ${{ steps.success.outputs.success }}
+      failure: ${{ steps.failure.outputs.failure }}
+    steps:
+      #~~~~~~~~~~~~~~~~~~~~~~~#
+      # SETUP ENV and DEPENDS #
+      #~~~~~~~~~~~~~~~~~~~~~~~#
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.20.1
+          registry-url: https://npm.pkg.github.com/
+          scope: t1cg
+
+      - name: Install dependencies
+        env:
+          JS_UTIL_TOKEN: ${{ secrets.T1CG_UTIL_TOKEN }}
+        run: npm ci
+
+      - name: Typescript Check
+        run: |
+          npm run typecheck
+
+      - name: Lint Check
+        run: |
+          npm run lint
+          npm run lint-imports
+          npm run prettier
+
+      - name: Check Diff
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          base: ${{ github.base_ref }}
+          filters: |
+            ui:
+              - 'packages/ui/**'
+            api:
+              - 'packages/api/**'
+
+      - name: UI Tests
+        if: steps.changes.outputs.ui == 'true'
+        run: |
+          npm run test -w ui
+
+      - name: API Tests
+        if: steps.changes.outputs.api == 'true'
+        run: |
+          npm run test -w api
+        env:
+          TIMESHEET_SECRET: ${{ secrets.TIMESHEET_SECRET }}
+          TIMESHEET_SLACK_BOT_TOKEN: ${{ secrets.TIMESHEET_SLACK_BOT_TOKEN }}
+          TIMESHEET_SLACK_SIGNING_SECRET: ${{ secrets.TIMESHEET_SLACK_SIGNING_SECRET }}
+
+      - name: Version Output
+        if: contains(github.base_ref, 'main') || contains(github.head_ref, 'release-please--branches--main')
+        id: version
+        run: echo "::set-output name=version::v$(cat package.json | jq -r '.version')"
+
+      - name: Success Output
+        if: success()
+        id: success
+        run: echo "::set-output name=success::true"
+
+      - name: Failure Output
+        if: failure()
+        id: failure
+        run: echo "::set-output name=failure::true"
+
+  #~~~~~~~~~~~~~~~~~~~~~~#
+  #    BUILD TAG PUSH    #
+  #~~~~~~~~~~~~~~~~~~~~~~#
+  BTP:
+    needs: Checks
+    runs-on: [t1cgaws]
+    outputs:
+      success: ${{ steps.success.outputs.success }}
+      failure: ${{ steps.success.outputs.failure }}
+    steps:
+      - uses: actions/checkout@v3
+        if: contains(github.base_ref, 'main') || contains(github.head_ref, 'release-please--branches--main') || contains(github.ref, 'develop')
+      - uses: actions/checkout@v3
+        if: contains(github.base_ref, 'main') || contains(github.head_ref, 'release-please--branches--main') || contains(github.ref, 'develop')
+        with:
+          repository: t1cg/shared-gh-actions
+          ref: master
+          token: ${{secrets.T1CG_UTIL_TOKEN}}
+          path: .github/actions/shared-gh-actions
+      #~~~~~~~~~~~~~~~~~~~~~~#
+      #          UI          #
+      #~~~~~~~~~~~~~~~~~~~~~~#
+      - name: UI BTP
+        if: (contains(needs.Checks.outputs.ui, 'true') && contains(github.ref, 'develop')) || contains(github.base_ref, 'main') || contains(github.head_ref, 'release-please--branches--main')
+        uses: ./.github/actions/shared-gh-actions/btp
+        with:
+          ECR_REPOSITORY: tsheetv2-ui
+          PR_TO_MASTER: ${{ contains(github.base_ref, 'main') }}
+          PUSH_TO_DEVELOP: ${{ contains(github.ref, 'develop') }}
+          HOTFIX: ${{ contains(github.head_ref, 'release-please--branches--main') }}
+          NEW_VERSION: ${{ needs.Checks.outputs.version }}
+          T1CG_UTIL_TOKEN: ${{ secrets.T1CG_UTIL_TOKEN }}
+          DOCKERFILE_PATH: packages/ui/Docker/Dockerfile.k8s
+      #~~~~~~~~~~~~~~~~~~~~~~#
+      #          API         #
+      #~~~~~~~~~~~~~~~~~~~~~~#
+      - name: API BTP
+        if: (contains(needs.Checks.outputs.api, 'true') && contains(github.ref, 'develop')) || contains(github.base_ref, 'main') || contains(github.head_ref, 'release-please--branches--main')
+        uses: ./.github/actions/shared-gh-actions/btp
+        with:
+          ECR_REPOSITORY: tsheetv2-api
+          PR_TO_MASTER: ${{ contains(github.base_ref, 'main') }}
+          PUSH_TO_DEVELOP: ${{ contains(github.ref, 'develop') }}
+          HOTFIX: ${{ contains(github.head_ref, 'release-please--branches--main') }}
+          NEW_VERSION: ${{ needs.Checks.outputs.version }}
+          T1CG_UTIL_TOKEN: ${{ secrets.T1CG_UTIL_TOKEN }}
+          DOCKERFILE_PATH: packages/api/Docker/Dockerfile.k8s
+
+  #~~~~~~~~~~~~~~~~~~~~~~#
+  #        NOTIFY        #
+  #~~~~~~~~~~~~~~~~~~~~~~#
+  Notify:
+    needs: [Checks]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout out gh repository
+        uses: actions/checkout@v3
+        with:
+          repository: t1cg/shared-gh-actions
+          ref: master
+          token: ${{secrets.T1CG_UTIL_TOKEN}}
+          path: .github/actions/shared-gh-actions
+
+      - name: Get Slack Id
+        if: github.actor != 'dependabot[bot]'
+        id: slackId
+        uses: ./.github/actions/shared-gh-actions/getSlackId
+        with:
+          gh-user: ${{ github.actor }}
+
+      - name: Success Slack Message
+        if: steps.slackId.outcome != 'skipped' && contains(needs.Checks.outputs.success, 'true')
+        uses: ./.github/actions/shared-gh-actions/slackMsg
+        with:
+          to: "@${{ steps.slackId.outputs.slackId }}"
+          text: "Timesheet - ${{ github.head_ref || github.ref_name }} - Checks Passed :thumbsup:"
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          color: "success"
+          buttonLink: "https://github.com/t1cg/tsheetv2/actions/runs/${{ github.run_id }}"
+
+      - name: Fail Slack Message
+        if: steps.slackId.outcome != 'skipped' && contains(needs.Checks.outputs.failure, 'true')
+        uses: ./.github/actions/shared-gh-actions/slackMsg
+        with:
+          to: "@${{ steps.slackId.outputs.slackId }}"
+          text: "Timesheet - ${{ github.head_ref || github.ref_name }} - Checks Failed :scream:"
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          color: "fail"
+          buttonLink: "https://github.com/t1cg/tsheetv2/actions/runs/${{ github.run_id }}"
+
+      - name: Notify Reviewers
+        if: contains(github.base_ref, 'develop')
+        uses: ./.github/actions/shared-gh-actions/slackMsg
+        id: slack
+        with:
+          color: "fail"
+          buttonLink: "https://github.com/t1cg/tsheetv2/pull/${{ github.event.number }}"
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          text: Timesheet | Review requested for PR-${{github.event.number}}
+          messageType: "notify_reviewer"

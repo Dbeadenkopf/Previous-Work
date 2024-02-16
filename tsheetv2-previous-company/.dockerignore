@@ -1,0 +1,12 @@
+**/coverage
+**/jest.config.ts
+**/node_modules
+**/*.md
+**/*.test.ts
+
+# api
+**/test
+**/*.http
+
+# ui
+**/dist

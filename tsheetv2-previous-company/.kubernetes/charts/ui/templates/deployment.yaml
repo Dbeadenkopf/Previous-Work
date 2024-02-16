@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        image: 269453212324.dkr.ecr.us-east-1.amazonaws.com/tsheetv2-ui:{{ .Values.image }}
+        imagePullPolicy: Always
+        env:
+        - name: DEPLOY_DATE
+          value: {{ quote .Values.deployDate }}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /usr/share/nginx/html/env.js
+          subPath: env.js
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ .Release.Name }}-config
+      nodeSelector:
+        env: {{ .Values.webEnv }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ .Release.Name }}
+              topologyKey: kubernetes.io/hostname

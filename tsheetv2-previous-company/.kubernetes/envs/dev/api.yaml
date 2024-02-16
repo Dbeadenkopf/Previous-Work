@@ -1,0 +1,12 @@
+deployDate: "date"
+port: 2001
+resources:
+  requests:
+    cpu: 10m
+    memory: 180Mi
+hpa:
+  minReplicas: 1
+  maxReplicas: 10
+  averageUtilization: 80
+appEnv: app
+environment: dev

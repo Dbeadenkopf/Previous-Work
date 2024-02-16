@@ -1,0 +1,94 @@
+.container {
+  width: 60%;
+  margin: auto;
+  cursor: default;
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    width: 80%;
+  }
+}
+
+.totalHoursContainer {
+  padding-top: 40px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 20px;
+  transition: linear 0.1s;
+}
+
+.calendar {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  border: $primary-color solid 2px;
+  border-radius: 10px;
+  position: relative;
+  cursor: default;
+  user-select: none;
+
+  .calendarSquareRight {
+    position: absolute;
+    background-color: $primary-color;
+    height: 15px;
+    width: 8px;
+    top: -11px;
+    right: 10px;
+    border-radius: $smallBorderRadius;
+    border: white 2px solid;
+    z-index: 2;
+  }
+  .calendarSquareLeft {
+    position: absolute;
+    background-color: $primary-color;
+    height: 15px;
+    width: 8px;
+    top: -11px;
+    left: 10px;
+    border-radius: $smallBorderRadius;
+    border: white 2px solid;
+    z-index: 2;
+  }
+
+  .calendarHeader {
+    height: 14px;
+    background-color: $warning;
+    border-top-left-radius: 6.5px;
+    border-top-right-radius: 6.5px;
+  }
+  .calendarDate {
+    padding-top: 3px;
+    font-size: 30px;
+  }
+}
+
+.currentDayContainer {
+  font-size: 18px;
+  line-height: 0.5;
+  padding-bottom: 0.25px;
+
+  p {
+    font-weight: bold;
+  }
+}
+
+.weekHoursContainer {
+  position: relative;
+  background-color: $t1cgGrey;
+  font-size: 20px;
+  margin: 0 auto;
+  width: 60%;
+  min-width: 340px;
+  border-radius: $mediumBorderRadius;
+  height: 70px;
+  line-height: 0.5;
+  transition: linear 0.1s;
+
+  .weekLabel {
+    padding-top: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}

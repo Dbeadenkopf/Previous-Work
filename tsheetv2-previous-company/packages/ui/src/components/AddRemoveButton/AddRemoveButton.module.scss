@@ -1,0 +1,92 @@
+.container {
+  display: inline-block;
+  vertical-align: auto;
+}
+
+.hover-add:hover .label {
+  color: $success;
+}
+
+.hover-add:hover .button {
+  color: $success;
+}
+
+.hover-remove:hover .label {
+  color: $danger;
+}
+
+.hover-remove:hover .button {
+  color: $danger;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.disabledLabel {
+  color: lightgray;
+}
+
+.disabledButton {
+  color: lightgray;
+  margin-right: 15px;
+}
+
+.hover-remove {
+  &:hover {
+    color: $danger;
+  }
+}
+
+.button {
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.fontReg {
+  font-size: 12pt;
+}
+
+.font2xs {
+  font-size: 9pt;
+}
+
+.fontxs {
+  font-size: 10pt;
+}
+
+.fontsm {
+  font-size: 11pt;
+}
+
+.fontlg {
+  font-size: 14pt;
+}
+
+.fontxl {
+  font-size: 16pt;
+}
+
+.font2xl {
+  font-size: 17pt;
+}
+
+.primary {
+  color: $primary-color;
+}
+
+.secondary {
+  color: $secondary-color;
+}
+
+.success {
+  color: $success;
+}
+
+.warning {
+  color: $warning;
+}
+
+.danger {
+  color: $danger;
+}

@@ -1,0 +1,155 @@
+$border-width: 5px;
+
+.container .namesList {
+  position: relative;
+  padding: 1em 0;
+  white-space: nowrap;
+  margin: 0 auto;
+  text-align: center;
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.container .nameItem {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 2em 0.5em 0 0.5em;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: $border-width solid $t1cgGrey;
+    width: 50%;
+    height: 1em;
+  }
+  &::after {
+    right: auto;
+    left: 50%;
+    border-left: $border-width solid $t1cgGrey;
+  }
+  &:only-child::after,
+  &:only-child::before {
+    display: none;
+  }
+  &:only-child {
+    padding-top: 0;
+  }
+  &:first-child::before,
+  &:last-child::after {
+    border: 0 none;
+  }
+  &:last-child::before {
+    border-right: $border-width solid $t1cgGrey;
+    border-top-right-radius: $smallBorderRadius;
+  }
+  &:first-child::after {
+    border-top-left-radius: $smallBorderRadius;
+  }
+}
+
+.container .namesList .namesList::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: $border-width solid $t1cgGrey;
+  width: 0;
+  height: 1em;
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.profileLogo {
+  font-size: 40px;
+  color: $secondary-color;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.viewMember {
+  text-decoration: underline;
+  font-size: 15px;
+}
+
+.initials {
+  padding-left: 40px;
+}
+
+.newEmployeeContainer {
+  width: fit-content;
+  margin: auto;
+}
+
+.inputTitle {
+  font-weight: bold;
+  text-align: center;
+  @include bp-lg {
+    text-align: unset;
+  }
+}
+
+.inputContainer {
+  border: 3px solid $t1cgGrey;
+  padding: 20px;
+  border-radius: $mediumBorderRadius;
+}
+
+.inputGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 10px;
+  gap: 20px;
+  @include bp-lg {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.blankCell {
+  display: none;
+  @include bp-lg {
+    display: unset;
+  }
+}
+
+.addButton {
+  display: flex;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 10px;
+  @include bp-lg {
+    text-align: end;
+  }
+}
+
+.tooltip {
+  margin: 10px;
+}
+
+.tooltipList {
+  text-align: left;
+}
+
+.viewArchivedContainer {
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+  margin: auto;
+  padding: 20px;
+}
+
+.viewArchivedLink {
+  color: $secondary-color;
+}

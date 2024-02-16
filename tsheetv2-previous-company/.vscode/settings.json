@@ -1,0 +1,17 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "host": "http://localhost:2001/api",
+      "timesheetId": "6238b6da809a177db94e7adc",
+      "projectId": "62607cbed7d2b193f8e30dcc",
+      "userId": "62559d1466052aad915745ac",
+      "roleId": "62607cbed7d2b193f8e30dd0"
+    }
+  },
+  "rest-client.defaultHeaders": {
+    "Content-Type": "application/json",
+    "cookie": "accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjU1OWQxNDY2MDUyYWFkOTE1NzQ1YWMiLCJpYXQiOjE2NjMwOTkyNjh9",
+    "Authorization": "Bearer 54NJodrQR3Sb8ZClHnEB_0HWLH4ZWnwEGfF39kbgeZo"
+  },
+  "rest-client.rememberCookiesForSubsequentRequests": false
+}

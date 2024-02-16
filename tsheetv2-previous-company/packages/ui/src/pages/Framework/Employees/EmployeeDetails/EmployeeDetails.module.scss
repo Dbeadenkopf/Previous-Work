@@ -1,0 +1,186 @@
+.name {
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.container {
+  padding-top: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.details {
+  display: block;
+  padding: 40px;
+  width: 400px;
+  border: 3px solid $t1cgGrey;
+  border-radius: $mediumBorderRadius;
+  height: auto;
+  align-items: center;
+}
+
+.infoHeader {
+  display: flex;
+  gap: 15px;
+  font-weight: bold;
+
+  label {
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    text-align: center;
+  }
+}
+
+.avatarFrame {
+  height: 60px;
+  width: 60px;
+  background-color: $warning;
+  border-radius: 50%;
+  border: 3px solid $secondary-color;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  line-height: 56px;
+}
+
+.topLine {
+  display: flex;
+  height: auto;
+  gap: 20px;
+  align-items: center;
+  vertical-align: middle;
+  padding-bottom: 30px;
+  padding-left: 15px;
+}
+
+.nameAndEmail {
+  display: grid;
+  grid-auto-rows: 20px;
+  padding-bottom: 40px;
+}
+
+.bolded {
+  font-weight: bolder;
+}
+
+.rolesFlex {
+  display: flex;
+}
+
+.rolesList {
+  list-style: none;
+}
+
+.rolesSpacing {
+  padding: 5px;
+  padding-top: 7px;
+  position: relative;
+}
+
+.permissions {
+  padding: 5px;
+  padding-left: 15px;
+  list-style: none;
+  font-size: 13px;
+  color: $t1cgGrey;
+}
+
+.permissions li::before {
+  content: '\2022-';
+  font-size: 18px;
+  color: $warning;
+  padding-right: 5px;
+}
+
+.removeEmployeeContainer {
+  text-align: center;
+  padding-top: 80px;
+}
+
+.removeText {
+  font-weight: bold;
+}
+
+.modalWarning {
+  color: red;
+}
+
+.modalBtnContainer {
+  float: right;
+}
+
+.saveButtonContainer {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.roleDisplayMargin {
+  margin-left: 54px;
+}
+
+.employeeTitle {
+  min-width: 225px;
+  text-align: center;
+}
+
+.assignedEmpRolesContainer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  background-color: $t1cgGrey;
+  border: 2px solid lightgray;
+  width: 350px;
+}
+
+.deleteRole {
+  position: absolute;
+  right: 0;
+  padding-right: 20px;
+}
+
+.assignedEmpRolesContainer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  background-color: $t1cgGrey;
+  border: 2px solid lightgray;
+  width: 350px;
+}
+
+.availableEmpRolesContainer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  width: 350px;
+}
+
+.rolesSpacingWithPlus {
+  padding: 5px;
+  list-style: none;
+}
+
+.allRolesUl {
+  padding-left: 25px;
+}
+
+.allRolesPermissionsLi {
+  padding-left: 45px;
+}
+
+.slackId {
+  text-align: left;
+  padding-left: 35px;
+}
+
+.empTitleInputContainer {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-mongodb
+  labels:
+    name: {{ .Release.Name }}-mongodb
+spec:
+  serviceName: "{{ .Release.Name }}-mongodb"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mongodb
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mongodb
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-mongodb
+        image: mongo:4
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: rootUser
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: rootPassword
+          - name: DEPLOY_DATE
+            value: {{ quote .Values.deployDate }}
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+          - name: {{ .Release.Name }}-pv
+            mountPath: /data/db
+      nodeSelector:
+        env: data
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Release.Name }}-pv
+      annotations:
+        volume.beta.kubernetes.io/storage-class: "gp2-mongo"
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi

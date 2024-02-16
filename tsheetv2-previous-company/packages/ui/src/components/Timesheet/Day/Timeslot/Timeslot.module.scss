@@ -1,0 +1,40 @@
+.timeInputContainer {
+  display: inline-block;
+  height: 20%;
+}
+
+.timeRow {
+  text-align: left;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.totalHours {
+  font-size: 16px;
+  font-weight: bold;
+  color: $warning;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  @include bp-lg {
+    padding: 5px 0 0 0;
+  }
+}
+
+.negativeHours {
+  color: $danger;
+}
+
+.detailsContainer {
+  display: inline-block;
+  height: auto;
+}
+
+.inputFieldContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}

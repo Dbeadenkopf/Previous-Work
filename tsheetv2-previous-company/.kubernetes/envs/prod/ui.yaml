@@ -1,0 +1,13 @@
+deployDate: "date"
+replicaCount: 1
+port: 2000
+resources:
+  requests:
+    cpu: 5m
+    memory: 15Mi
+hpa:
+  minReplicas: 1
+  maxReplicas: 10
+  averageUtilization: 80
+webEnv: web
+environment: prod

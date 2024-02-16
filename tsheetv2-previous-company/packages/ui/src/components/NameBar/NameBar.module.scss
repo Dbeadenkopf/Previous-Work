@@ -1,0 +1,156 @@
+.nameBar {
+  position: relative;
+  font-size: 16px;
+  cursor: default;
+  width: 99%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .nameBar {
+    width: 90%;
+  }
+}
+
+.greeting {
+  height: 50px;
+
+  margin: auto;
+  border-spacing: 5px;
+}
+
+.nameCircleSmall {
+  cursor: default;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.padding {
+  width: 43px;
+}
+
+.nameCircleSmallTd {
+  width: 45px;
+}
+
+.hiName {
+  position: relative;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.hiNameTd {
+  white-space: nowrap;
+  text-align: left;
+  width: fit-content;
+}
+
+.nameCard {
+  position: absolute;
+  display: inline-block;
+  width: 290px;
+  border: 3px $warning solid;
+  background-color: $t1cgGrey;
+  align-content: center;
+  text-align: center;
+  z-index: 95;
+  border-radius: $largeBorderRadius;
+  color: $primary-color;
+  right: 0px;
+  height: auto;
+  max-height: 85vh;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+}
+
+.hideNameCard {
+  display: none;
+}
+
+.nameCircleBig {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  cursor: default;
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.nameCardName {
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+.nameCardEmail {
+  margin-bottom: 5px;
+  color: grey;
+  font-size: 15px;
+}
+
+.nameCardTitle {
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  font-size: 15px;
+}
+
+.nameCardNotification {
+  margin-bottom: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+  height: 20px;
+
+  &:hover {
+    cursor: pointer;
+    font-size: 15.5px;
+  }
+}
+
+.settingsMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.nameCardSupervisor {
+  color: $secondary-color;
+  padding-top: 5px;
+  padding-bottom: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 15px;
+}
+
+.nameCardLogout {
+  cursor: pointer;
+  margin-bottom: 25px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 100%;
+
+  &:hover {
+    font-size: 15.5px;
+    margin-bottom: 24.5px;
+  }
+}
+
+.nameBarFixedContainer {
+  position: fixed;
+  z-index: 101;
+  top: 15px;
+  width: 180px;
+}

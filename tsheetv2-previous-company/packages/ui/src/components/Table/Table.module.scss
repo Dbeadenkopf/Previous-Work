@@ -1,0 +1,161 @@
+.tableContainer {
+  border: 3px solid $t1cgGrey;
+  padding: 16px;
+  border-radius: $mediumBorderRadius;
+
+  .label {
+    padding-bottom: 16px;
+    font-size: 20px;
+  }
+
+  .noLabel {
+    display: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%; // 100% of the table element is filled
+
+    thead {
+      background: $t1cgGrey;
+    }
+
+    .trDivider {
+      border-bottom: 2px solid $t1cgGrey;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    th,
+    td {
+      padding: 20px;
+      text-overflow: ellipsis;
+      text-align: left;
+      width: fit-content;
+    }
+
+    .alignLeft {
+      text-align: left;
+    }
+
+    .alignRight {
+      text-align: right;
+    }
+
+    .alignCenter {
+      text-align: center;
+    }
+
+    // Border radius for header
+    tr {
+      &:first-child {
+        th {
+          &:first-child {
+            border-top-left-radius: $mediumBorderRadius;
+          }
+        }
+      }
+    }
+    tr {
+      &:first-child {
+        th {
+          &:last-child {
+            border-top-right-radius: $mediumBorderRadius;
+          }
+        }
+      }
+    }
+    tr {
+      &:last-child {
+        th {
+          &:first-child {
+            border-bottom-left-radius: $mediumBorderRadius;
+          }
+        }
+      }
+    }
+    tr {
+      &:last-child {
+        th {
+          &:last-child {
+            border-bottom-right-radius: $mediumBorderRadius;
+          }
+        }
+      }
+    }
+  }
+
+  .table {
+    table-layout: fixed;
+
+    @media only screen and (max-width: $lg) {
+      .headerDivider {
+        border: 6px solid $t1cgGrey;
+      }
+
+      .th {
+        display: none;
+      }
+
+      .td {
+        padding: 4px;
+        display: block;
+        text-align: left;
+
+        &:first-child {
+          padding-top: 16px;
+        }
+        &:last-child {
+          padding-bottom: 16px;
+        }
+        // Select any elem that is not .noHeader, and add this before each elem
+        &:not(.noHeader):before {
+          content: attr(data-th);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .verticalView {
+    table-layout: fixed;
+
+    .headerDivider {
+      border: 6px solid $t1cgGrey;
+    }
+
+    .th {
+      display: none;
+    }
+
+    .td {
+      padding: 4px;
+      display: block;
+      text-align: left;
+
+      &:first-child {
+        padding-top: 16px;
+      }
+      &:last-child {
+        padding-bottom: 16px;
+      }
+      // Select any elem that is not .noHeader, and add this before each elem
+      &:not(.noHeader):before {
+        content: attr(data-th);
+        font-weight: bold;
+      }
+    }
+  }
+
+  .scrollTable {
+    .scrollTh,
+    .scrollTd {
+      max-width: 0;
+    }
+  }
+}
+
+.scrollOnOverflow {
+  overflow-x: scroll;
+}

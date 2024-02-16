@@ -1,0 +1,24 @@
+FROM node:16
+
+WORKDIR /usr/src/tsheetv2
+
+COPY package.json package-lock.json .npmrc ./
+COPY packages/ui packages/ui
+
+ARG JS_UTIL_TOKEN
+
+RUN npm ci -w ui
+RUN rm .npmrc
+
+RUN npm run build -w ui
+
+FROM 269453212324.dkr.ecr.us-east-1.amazonaws.com/t1cg-webserver:latest
+
+RUN sed -ie "s/CONTAINER_PORT/2000/g" /etc/nginx/nginx.conf
+
+COPY --from=0 /usr/src/tsheetv2/packages/ui/dist /usr/share/nginx/html/
+COPY --from=0 /usr/src/tsheetv2/packages/ui/dist /var/www/html/
+
+EXPOSE 2000
+
+CMD ["nginx", "-g", "daemon off;"]

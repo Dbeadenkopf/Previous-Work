@@ -1,0 +1,77 @@
+.loginContainer {
+  position: absolute;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  height: 100%;
+  width: 100%;
+  background-color: $primary-color;
+  border-radius: $largeBorderRadius;
+}
+
+@media only screen and (min-width: 768px) {
+  .loginContainer {
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -250px;
+    height: 600px;
+    width: 500px;
+  }
+}
+
+.loginTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 48px;
+}
+
+.loginDescription {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  font-size: 20px;
+}
+
+.loginVersion {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 200px;
+}
+
+@media only screen and (min-width: 768px) {
+  .loginVersion {
+    margin-bottom: 25px;
+  }
+}
+
+.oneTap {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  height: 200px;
+  width: 200px;
+}
+
+.googleLogin {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -100px;
+  height: 40px;
+  width: 200px;
+}
+
+@media only screen and (min-width: 768px) {
+  .googleLogin {
+    top: 65%;
+  }
+}

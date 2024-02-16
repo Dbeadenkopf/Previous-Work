@@ -1,0 +1,9 @@
+.modalButtonContainer {
+  display: flex;
+  gap: 9px;
+  justify-content: flex-end;
+
+  button {
+    border-radius: $smallBorderRadius;
+  }
+}

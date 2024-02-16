@@ -1,0 +1,15 @@
+GET {{host}}/roles
+
+###
+PUT {{host}}/roles
+
+{
+    "name": "Example Role", 
+    "description": "example description of example role", 
+    "permissions": ["EXAMPLE_READ", "EXAMPLE_WRITE"],
+    "userId": "{{userId}}"
+}
+
+###
+@id = 62607cbed7d2b193f8e30dce
+DELETE {{host}}/roles/{{id}}

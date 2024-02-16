@@ -1,0 +1,74 @@
+.main {
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 950px;
+}
+
+.container {
+  display: inline-block;
+  padding: 0 20%;
+}
+
+.info {
+  display: grid;
+  grid-auto-rows: 20px;
+  padding: 10px;
+}
+
+.container {
+  display: inline-block;
+}
+
+.infoPermissions {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  list-style-type: none;
+  font-size: 13px;
+  color: $t1cgGrey;
+  position: relative;
+  text-transform: capitalize;
+}
+
+.infoPermissions li::before {
+  content: '\2022-';
+  font-size: 20px;
+  color: $warning;
+  padding-right: 5px;
+}
+
+.infoDescription::first-letter {
+  text-transform: capitalize;
+}
+
+.editRole {
+  display: inline-block;
+  padding-bottom: 70px;
+  justify-content: space-around;
+}
+
+.delete {
+  margin-left: 20px;
+}
+
+.disabledDelete {
+  padding-left: 20px;
+  color: lightgray;
+}
+
+.newRole {
+  display: inline-block;
+  margin-top: 40px;
+}
+
+.newRoleText {
+  font-size: 20px;
+}
+
+.addIcon {
+  transition: color 0.2s;
+  margin-right: 10px;
+}

@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: api-t1cg-forum
+    build:
+      context: ../
+      dockerfile: ./Docker/Dockerfile.api.dev
+    restart: always
+    environment:
+      # Mongo URI in the docker
+      FORUM_DB_URI: mongodb://mongo:27017/t1cg-forum
+    ports:
+      - "8080:8080"
+    volumes:
+      - ..:/usr/src/app # Store local volumes
+    links:
+      - "mongodb"
+  mongodb:
+    container_name: mongo
+    image: mongo:jammy
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:

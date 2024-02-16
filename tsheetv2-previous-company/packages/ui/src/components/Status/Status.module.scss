@@ -1,0 +1,48 @@
+.container {
+  border: 3px solid $warning;
+  border-radius: $mediumBorderRadius;
+  margin: auto;
+  width: 40%;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 600px;
+  }
+}
+
+.status {
+  text-align: center;
+
+  .approved {
+    color: $success;
+  }
+
+  .rejected {
+    color: $danger;
+  }
+
+  .other {
+    color: $warning;
+  }
+}
+
+.titles {
+  font-weight: bold;
+}
+
+.approver {
+  font-size: 14px;
+  color: $secondary-color;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.comments {
+  display: inline-block;
+  width: auto;
+  padding-left: 35px;
+}

@@ -1,0 +1,32 @@
+.staticTimesheetNote {
+  @include bp-md {
+    margin-left: calc(100% / 7);
+  }
+}
+
+.staticTimesheetBlockHeading:not(:empty) {
+  text-align: center;
+  background-color: $t1cgGrey;
+  padding: 8px;
+  margin: 0 -44px 8px;
+
+  @include bp-md {
+    text-align: left;
+    background-color: inherit;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.labeledBlock {
+  &:before {
+    content: attr(data-label);
+    margin-right: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    @include bp-md {
+      content: '';
+    }
+  }
+}

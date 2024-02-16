@@ -1,0 +1,31 @@
+$xs: 600px;
+$sm: 600px;
+$md: 768px;
+$lg: 992px;
+$xlg: 1200px;
+
+@mixin bp-xs {
+  @media only screen and (max-width: $xs) {
+    @content;
+  }
+}
+@mixin bp-sm {
+  @media only screen and (min-width: $sm) {
+    @content;
+  }
+}
+@mixin bp-md {
+  @media only screen and (min-width: $md) {
+    @content;
+  }
+}
+@mixin bp-lg {
+  @media only screen and (min-width: $lg) {
+    @content;
+  }
+}
+@mixin bp-xlg {
+  @media only screen and (min-width: $xlg) {
+    @content;
+  }
+}

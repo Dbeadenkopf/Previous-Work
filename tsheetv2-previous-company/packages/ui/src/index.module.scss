@@ -1,0 +1,8 @@
+@use 'sass/normalize' as *;
+@use 'sass/typography' as *;
+
+* {
+  font-family: t1cg;
+  font-weight: normal;
+  color: $primary-color;
+}

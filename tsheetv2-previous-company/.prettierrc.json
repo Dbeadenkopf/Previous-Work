@@ -1,0 +1,14 @@
+{
+  "bracketSameLine": true,
+  "bracketSpacing": false,
+  "printWidth": 110,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["*.yml", "*.yaml"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}

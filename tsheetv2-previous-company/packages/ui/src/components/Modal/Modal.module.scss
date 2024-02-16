@@ -1,0 +1,49 @@
+.overlayContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  .modal {
+    @media only screen and (min-width: 600px) {
+      width: 500px;
+    }
+    border: none;
+    border-radius: $mediumBorderRadius;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 10px rgba(0, 0, 0, 0.1), 0 4px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 300px;
+    max-width: 100%;
+    max-height: 500px;
+    overflow: auto;
+    border: 3px solid $primary-color;
+
+    .modalTitle {
+      margin: 0;
+    }
+
+    .closeBtn {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      border: none;
+      background: none;
+      padding: 20px;
+
+      &:before {
+        content: '\002715';
+      }
+
+      &:hover {
+        color: $danger;
+        cursor: pointer;
+      }
+    }
+  }
+}

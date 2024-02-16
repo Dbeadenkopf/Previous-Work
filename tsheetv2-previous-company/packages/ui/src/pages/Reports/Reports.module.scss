@@ -1,0 +1,104 @@
+.reportContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+
+  .filterContainer {
+    border-radius: $mediumBorderRadius;
+    border: 3px solid $t1cgGrey;
+    padding: 25px;
+    border-radius: 10px;
+
+    height: 100%;
+    max-height: 100%;
+    .filter {
+      .specificDate {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .specificDateRange {
+        margin-top: 10px;
+
+        .dateRange {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        .fromToWeekContainer {
+          .weekDate {
+            display: flex;
+            margin: 20px 32px;
+            gap: 10px;
+            align-items: center;
+          }
+        }
+      }
+      .resetFilter {
+        text-align: center;
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  .timesheetsContainer {
+    background: $t1cgGrey;
+    border-radius: $mediumBorderRadius;
+    padding: 20px;
+    margin-left: 20px;
+    .timesheets {
+      margin: 0 20px 20px;
+      background: white;
+      border-radius: $mediumBorderRadius;
+      margin-bottom: 40px;
+    }
+  }
+}
+.reportTypes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.divider {
+  border: 1px solid $t1cgGrey;
+  margin-left: -18px;
+  margin-right: -18px;
+  margin-bottom: 30px;
+}
+
+.dropdowns {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.label {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.printerAndExportContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 20px;
+  width: calc(100% - 40px);
+
+  .printerIcon {
+    height: 30px;
+    cursor: pointer;
+  }
+  .pdfIcon {
+    height: 30px;
+    cursor: pointer;
+  }
+}

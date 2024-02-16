@@ -1,0 +1,82 @@
+GET {{host}}/users?supervisor={{userId}}
+
+###
+GET {{host}}/users/{{userId}} 
+
+###
+GET {{host}}/api/users?status=removed
+
+### 
+# @name login
+@email = emily.employee@t1cg.com
+POST {{host}}/users/login
+
+{
+  "email": "{{email}}"
+}
+
+###
+POST {{host}}/users/logout
+
+###
+POST {{host}}/users/register
+
+{
+  "first": "a",
+  "email": "b",
+  "last": "c",
+  "title": "d",
+  "supervisor": "6260398787e18312af05e68d"
+}
+
+### 
+PUT {{host}}/api/users/{{userId}}/removed
+
+###
+PUT {{host}}/users/{{userId}}
+
+{
+   "title": "Adam the almighty",
+   "roles": ["{{roleId}}"],
+   "userId": "{{userId}}"
+}
+
+###
+PUT {{host}}/users/timezone
+
+{
+    "userId": "{{userId}}",
+    "timezone": "America/New_York",
+    "notifications": {
+        "email": {
+            "submission": {
+                "on": true,
+                "time": {
+                    "hour": "10",
+                    "minute": "30",
+                    "period": "AM"
+                }
+            },
+            "approval": false,
+            "rejection": false,
+            "comment": false,
+            "approvalReminder": false,
+            "resubmission": false
+        },
+        "slack": {
+            "submission": {
+                "on": true,
+                "time": {
+                    "hour": "10",
+                    "minute": "30",
+                    "period": "AM"
+                }
+            },
+            "approval": false,
+            "rejection": false,
+            "comment": false,
+            "approvalReminder": false,
+            "resubmission": false
+        }
+    }
+}

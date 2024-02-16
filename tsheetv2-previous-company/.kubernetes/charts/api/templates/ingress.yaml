@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  namespace: tsheetv2
+spec:
+  rules:
+  {{ if eq .Values.environment "prod" }}
+  - host: timesheet.t1cg.io
+  {{ else }}
+  - host: sprint-tsheetv2.t1cg.codes
+  {{ end }}
+    http:
+      paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          serviceName: expose-{{ .Release.Name }}
+          servicePort: {{ .Values.port }}

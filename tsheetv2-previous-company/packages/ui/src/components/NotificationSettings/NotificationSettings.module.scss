@@ -1,0 +1,38 @@
+.container {
+  cursor: default;
+  background-color: $t1cgGrey;
+  width: 260px;
+  text-align: left;
+  border: solid 2px $warning;
+  border-radius: 10px;
+}
+
+.header1,
+.header2 {
+  color: $secondary-color;
+  width: 230px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.header1 {
+  margin-top: 15px;
+}
+
+.header2 {
+  margin-top: -3px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  width: 230px;
+  color: gray;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  font-size: 13.5px;
+}

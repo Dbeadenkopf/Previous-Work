@@ -1,0 +1,17 @@
+.navButton {
+  font-size: 25px;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .navButton {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}

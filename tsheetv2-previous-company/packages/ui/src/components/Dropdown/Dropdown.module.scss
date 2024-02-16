@@ -1,0 +1,93 @@
+.flexDropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labelLeft {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.labelTop {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.selector {
+  border: 2px solid $t1cgDarkGrey;
+  background-color: $t1cgGrey;
+  border-radius: $smallBorderRadius;
+  cursor: pointer;
+
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// widths
+.defaultWidth {
+  width: 100%;
+}
+.extraSmall {
+  width: $inputWidthXs;
+}
+.small {
+  width: $inputWidthSm;
+}
+.medium {
+  width: $inputWidthMd;
+}
+.large {
+  width: $inputWidthLg;
+}
+
+// heights
+.defaultHeight {
+  height: 100%;
+}
+.smallHeight {
+  height: $inputHeightSm;
+}
+.mediumHeight {
+  height: $inputHeightMd;
+}
+.largeHeight {
+  height: $inputHeightLg;
+}
+
+// text alignment
+.leftAlign {
+  text-align: left;
+}
+.centerAlign {
+  text-align: center;
+}
+.rightAlign {
+  text-align: right;
+}
+
+// font size
+.smallFont {
+  font-size: 12.5px;
+}
+.mediumFont {
+  font-size: 14px;
+}
+.largeFont {
+  font-size: 16px;
+}
+
+.disabled {
+  border-width: 1px;
+}
+
+.loading {
+  cursor: wait;
+}
+
+.bold {
+  font-weight: bold;
+}

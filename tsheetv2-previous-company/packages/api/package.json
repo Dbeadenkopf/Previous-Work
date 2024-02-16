@@ -1,0 +1,32 @@
+{
+  "name": "api",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon -T server.ts",
+    "test": "jest",
+    "coverage": "ls -t ./coverage/lcov-report/*.html | head -n1 | xargs open",
+    "seed": "ts-node ./db/seed/local",
+    "seed-k8s": "ts-node ./db/seed/k8s",
+    "mail-start": "docker-compose -f ./util/email/docker-compose.yml up -d",
+    "mail-stop": "docker-compose -f ./util/email/docker-compose.yml down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/bolt": "^3.11.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "google-auth-library": "^8.7.0",
+    "googleapis": "^110.0.0",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.1.10",
+    "node-fetch": "^2.6.7",
+    "node-schedule": "^2.1.0",
+    "nodemailer": "^6.7.2",
+    "ts-node": "^10.9.1"
+  }
+}

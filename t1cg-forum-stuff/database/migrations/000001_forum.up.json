@@ -1,0 +1,22 @@
+[
+    {
+      "createUser": "forumReader",
+      "pwd": "iamaforumreader",
+      "roles": [
+        {
+          "role": "read",
+          "db": "t1cg-forum"
+        }
+      ]
+    },
+    {
+        "createUser": "forumWriter",
+        "pwd": "iamaforumwriter",
+        "roles": [
+          {
+            "role": "readWrite",
+            "db": "t1cg-forum"
+          }
+        ]
+    }
+]

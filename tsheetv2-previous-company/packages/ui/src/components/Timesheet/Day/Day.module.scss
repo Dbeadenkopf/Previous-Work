@@ -1,0 +1,153 @@
+.dayContainer {
+  border: 3px solid $t1cgGrey;
+  border-radius: $mediumBorderRadius;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+
+  @include bp-lg {
+    align-items: center;
+  }
+  justify-content: space-around;
+  align-items: flex-start;
+  background: $t1cgGrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  .daySquare {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $mediumBorderRadius;
+    width: 62px;
+    height: 45px;
+    background-color: $warning;
+    font-size: 25px;
+    color: white;
+  }
+
+  .dateAndHoursContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    justify-content: space-between;
+    text-align: center;
+    @include bp-lg {
+      flex-direction: row;
+    }
+
+    .date {
+      width: 100px;
+
+      .dayOfWeek {
+        font-size: 17px;
+        font-weight: bold;
+        color: $primary-color;
+      }
+      .yearMonth {
+        font-size: 16px;
+        color: $primary-color;
+      }
+    }
+
+    .hours {
+      font-size: 17px;
+      font-weight: bold;
+      width: 150px;
+
+      .submittedStatus {
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .submittedLate {
+        color: $danger;
+      }
+      .submitted {
+        color: $success;
+      }
+      .unsubmitted {
+        color: $warning;
+      }
+    }
+  }
+
+  .expandCollapse {
+    width: 62px;
+    text-align: center;
+    color: $warning;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+.timeDetailsInputContainer {
+  @include bp-lg {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $primary-color;
+}
+
+.slotDivider {
+  border-top: 2px solid $t1cgGrey;
+}
+
+.noteContainer {
+  border: 2px lightgray solid;
+  border-radius: $mediumBorderRadius;
+  padding: 20px;
+
+  .expandCollapseNote {
+    cursor: pointer;
+  }
+
+  .inputFieldFlexContainer {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+
+    .inputFieldContainer {
+      width: 65%;
+    }
+  }
+}
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: center;
+  background: $t1cgGrey;
+  padding: 20px;
+  border-radius: $mediumBorderRadius;
+
+  .button {
+    border-radius: $mediumBorderRadius;
+    width: 225px;
+  }
+}
+
+.modalCheckbox {
+  cursor: pointer;
+}
+
+.modalWarning {
+  color: $danger;
+}
+
+.modalBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+
+  button {
+    border-radius: $smallBorderRadius;
+  }
+}

@@ -1,0 +1,12 @@
+FROM node:16
+
+WORKDIR /usr/src/tsheetv2
+
+COPY package.json package-lock.json ./
+COPY packages/api packages/api
+
+RUN npm ci -w api
+
+EXPOSE 2001
+
+CMD ["npm", "start", "-w", "api"]

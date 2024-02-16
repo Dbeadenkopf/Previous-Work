@@ -1,0 +1,97 @@
+.container {
+  width: 220px;
+  border: 2px solid $warning;
+  border-radius: $mediumBorderRadius;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba($t1cgGrey, 0.5);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
+  text-align: center;
+  align-items: center;
+  height: 30px;
+}
+
+.nextPrev {
+  background: white;
+  border-radius: $smallBorderRadius;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 28px;
+  font-size: 20px;
+  user-select: none;
+
+  &:hover {
+    background: $t1cgGrey;
+    cursor: pointer;
+  }
+}
+
+.monthYear {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.grid {
+  margin-top: 10px;
+}
+
+.row {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(7, 30px);
+  height: 30px;
+  border-radius: $largeBorderRadius;
+
+  &:hover {
+    background: $warning;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.day {
+  display: block;
+  text-align: center;
+  line-height: 30px;
+  height: 100%;
+  font-size: 12px;
+  font-family: t1cg;
+  user-select: none;
+}
+
+.dayRow {
+  font-size: 10px;
+  font-family: t1cg-bold;
+  pointer-events: none;
+}
+
+.anotherMonth {
+  opacity: 0.5;
+}
+
+.today {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: $smallBorderRadius;
+}
+
+.highlightRow {
+  background: rgba($warning, 0.75);
+  overflow: hidden;
+  pointer-events: none;
+
+  * {
+    color: white;
+  }
+
+  .today {
+    background: none;
+    color: black;
+  }
+}

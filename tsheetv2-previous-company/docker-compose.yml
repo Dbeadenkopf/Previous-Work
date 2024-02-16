@@ -1,0 +1,68 @@
+version: "3.9"
+services:
+  db:
+    build:
+      context: packages/api
+      dockerfile: db/Dockerfile
+    image: tsheetv2-db
+    container_name: db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+  api:
+    build:
+      context: .
+      dockerfile: packages/api/Docker/Dockerfile
+    image: tsheetv2-api
+    container_name: api
+    restart: always
+    ports:
+      - "2001:2001"
+    volumes:
+      - ./packages/api:/usr/src/tsheetv2/packages/api
+    environment:
+      - TIMESHEET_DB_URI=mongodb://db/timesheetDB
+      - TIMESHEET_DB_USER
+      - TIMESHEET_DB_PASS
+      - TIMESHEET_SECRET
+      - TIMESHEET_JIRA_TOKEN
+      - TIMESHEET_SLACK_BOT_TOKEN
+      - TIMESHEET_SLACK_SIGNING_SECRET
+      - TIMESHEET_OAUTH2_CLIENT_ID
+      - TIMESHEET_CLIENT_ID
+      - TIMESHEET_CLIENT_SECRET
+      - TIMESHEET_REDIRECT_URI
+      - TIMESHEET_REFRESH_TOKEN
+      - TIMESHEET_ADMIN_EMAIL
+      - TIMESHEET_EMAIL_SERVICE
+  ui:
+    build:
+      context: .
+      dockerfile: packages/ui/Docker/Dockerfile
+      args:
+        - JS_UTIL_TOKEN
+    image: tsheetv2-ui
+    container_name: ui
+    restart: always
+    ports:
+      - "2000:2000"
+    volumes:
+      - ./packages/ui:/usr/src/tsheetv2/packages/ui
+    environment:
+      - TIMESHEET_API_URL
+      - TIMESHEET_OAUTH2_CLIENT_ID
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
+volumes:
+  db:

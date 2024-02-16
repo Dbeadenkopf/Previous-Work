@@ -1,0 +1,21 @@
+.calendar {
+  margin: 48px auto;
+}
+
+.weekOfHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.approvedTimesheets {
+  margin: auto;
+  text-align: center;
+
+  @include bp-lg {
+    max-width: 900px;
+  }
+
+  @media only screen and (min-width: 1500px) {
+    max-width: 1160px;
+  }
+}

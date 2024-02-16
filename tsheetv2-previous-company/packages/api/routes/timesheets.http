@@ -1,0 +1,43 @@
+GET {{host}}/timesheets/{{timesheetId}}
+
+###
+PUT {{host}}/timesheets/{{timesheetId}}/comments
+
+{
+  "comment": "Nice."
+}
+
+###
+@status = approved
+PUT {{host}}/timesheets/{{timesheetId}}/{{status}}
+
+###
+GET {{host}}/timesheets?createdBy={{userId}}
+
+###
+GET {{host}}/timesheets
+
+###
+GET {{host}}/timesheets?status=submitted
+
+###
+GET {{host}}/timesheets?approvedBy=6260398787e18312af05e68d
+
+### 
+GET {{host}}/timesheets?status=rejected&createdBy=6260398787e18312af05e68d
+
+###
+// the weekOf is hardcoded here, it passes for now, but in the future the dates below might need to be updated
+GET {{host}}/timesheets?weekOf=2023-01-23T00:00:00.000Z&date=2023-01-30T18:04:04.024Z?dayName=sun
+
+###
+PUT {{host}}/timesheets
+
+{
+  "timesheet": {"_id": "{{timesheetId}}"}
+}
+
+###
+@day = fri
+PUT {{host}}/timesheets/{{timesheetId}}/time/{{day}}/submitted
+

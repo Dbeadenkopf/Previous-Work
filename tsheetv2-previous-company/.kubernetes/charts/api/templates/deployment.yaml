@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        image: 269453212324.dkr.ecr.us-east-1.amazonaws.com/tsheetv2-api:{{ .Values.image }}
+        imagePullPolicy: Always
+        env:
+        - name: TIMESHEET_DB_URI
+          value: "mongodb://tsheetv2-db-mongodb:27017/timesheetDB"
+        - name: TIMESHEET_DB_USER
+          value: "timesheetWrite"
+        - name:  TIMESHEET_DB_PASS
+          value: "iamatimesheetwriter"
+        - name: TIMESHEET_JIRA_TOKEN
+          value: "eGl1LndhbmdAdDFjZy5jb206V2FVY1pxSGw4QVNqc29OUGFPdWY0MDUx"
+        - name: TIMESHEET_SECRET
+          value: "gCz*aa5wH^#+R7Zr"
+        - name: TIMESHEET_OAUTH2_CLIENT_ID
+          value: "931006364133-hbsg0d6k6petrn7mh6ik1h3e2ed7o5ff.apps.googleusercontent.com"
+        - name: DEPLOY_DATE
+          value: {{ quote .Values.deployDate }}
+        - name: NODE_ENV
+          value: "production"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /usr/src/tsheetv2-api/.env
+          subPath: .env
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ .Release.Name }}-config
+      nodeSelector: 
+        env: {{ .Values.appEnv }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ .Release.Name }}
+              topologyKey: kubernetes.io/hostname

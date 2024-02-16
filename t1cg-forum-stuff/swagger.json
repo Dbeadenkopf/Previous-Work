@@ -1,0 +1,408 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Package main API"
+  },
+  "paths": {
+    "/posts": {
+      "get": {
+        "description": "This endpoint will return all posts in the db",
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get all posts",
+        "operationId": "posts",
+        "responses": {
+          "200": {
+            "description": "PostsGetResponse",
+            "schema": {
+              "$ref": "#/definitions/PostsGetResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "This endpoint will create a new post and return the post\nwith their id",
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Create a new post",
+        "operationId": "posts",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PostsPostResponse",
+            "schema": {
+              "$ref": "#/definitions/PostsPostResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "description": "This endpoint will return a post by its post ID",
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get post by ID",
+        "operationId": "posts",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PostGetByIDResponse",
+            "schema": {
+              "$ref": "#/definitions/PostGetByIDResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "This endpoint will find a post and update their information\nwith their id",
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Update a posts data",
+        "operationId": "posts",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PostsPutResponse",
+            "schema": {
+              "$ref": "#/definitions/PostsPutResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "This endpoint will find a post and delete their information\nwith their id",
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Deletes a post",
+        "operationId": "posts",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PostsDeleteResponse",
+            "schema": {
+              "$ref": "#/definitions/PostsDeleteResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "This endpoint will return all users in the db",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users",
+        "operationId": "users",
+        "responses": {
+          "200": {
+            "description": "UsersGetResponse",
+            "schema": {
+              "$ref": "#/definitions/UsersGetResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "This endpoint will create a new user and return the user\nwith their id",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user",
+        "operationId": "users",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UsersPostResponse",
+            "schema": {
+              "$ref": "#/definitions/UsersPostResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "This endpoint will return a user by their user ID",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by ID",
+        "operationId": "users",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UserGetByIDResponse",
+            "schema": {
+              "$ref": "#/definitions/UserGetByIDResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "This endpoint will find a user and update their information\nwith their id",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update a users data",
+        "operationId": "users",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UsersPutResponse",
+            "schema": {
+              "$ref": "#/definitions/UsersPutResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "This endpoint will find a user and delete their information\nwith their id",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Deletes a user",
+        "operationId": "users",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UsersDeleteResponse",
+            "schema": {
+              "$ref": "#/definitions/UsersDeleteResponse"
+            }
+          },
+          "500": {
+            "description": "CommonError",
+            "schema": {
+              "$ref": "#/definitions/CommonError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CommonError": {
+      "x-go-name": "Error",
+      "x-go-package": "github.com/t1cg/t1cg-forum/errors"
+    },
+    "PostGetByIDResponse": {
+      "description": "PostGetByIDResponse contains the response data for a /posts/{id} GET request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "PostsDeleteResponse": {
+      "description": "PostsDeleteResponse contains the response data for a /posts DELETE request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "PostsGetResponse": {
+      "description": "PostsGetResponse contains the response data for a /posts GET request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "PostsPostResponse": {
+      "description": "PostsPostResponse contains the response data for a /posts POST request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "PostsPutResponse": {
+      "description": "PostsPutResponse contains the response data for a /posts PUT request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "User": {
+      "description": "User contains users data",
+      "x-go-package": "github.com/t1cg/t1cg-forum/models"
+    },
+    "UserGetByIDResponse": {
+      "description": "UserGetByIDResponse contains the response data for a /users/{id} GET request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "UsersDeleteResponse": {
+      "description": "UsersDeleteResponse contains the response data for a /users DELETE request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "UsersGetResponse": {
+      "description": "UsersGetResponse contains the response data for a /users GET request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "UsersPostResponse": {
+      "description": "UsersPostResponse contains the response data for a /users POST request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    },
+    "UsersPutResponse": {
+      "description": "UsersPutResponse contains the response data for a /users PUT request",
+      "x-go-package": "github.com/t1cg/t1cg-forum/operations"
+    }
+  }
+}

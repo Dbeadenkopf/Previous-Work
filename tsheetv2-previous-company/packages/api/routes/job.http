@@ -1,0 +1,15 @@
+###
+PUT {{host}}/job/run
+
+{
+  "rule": "*/5 * * * * *",
+  "jobName": "exampleJob"
+}
+
+###
+PUT {{host}}/job/cancel
+
+{
+  "jobName": "exampleJob"
+}
+

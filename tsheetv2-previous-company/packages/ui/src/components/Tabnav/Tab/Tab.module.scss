@@ -1,0 +1,26 @@
+.navButton {
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: $smallBorderRadius;
+  padding: 5px 40px 5px 40px;
+  width: 180px;
+  color: $t1cgDarkGrey;
+  white-space: nowrap;
+  position: relative;
+}
+
+.active {
+  text-decoration: underline;
+  font-weight: bold;
+  border: 2px solid $warning;
+  white-space: nowrap;
+  color: $primary-color;
+}
+
+.warningSign {
+  position: absolute;
+  color: $danger;
+  font-size: 18px;
+  margin-top: 9px;
+  margin-left: 3px;
+}

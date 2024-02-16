@@ -1,0 +1,98 @@
+.content {
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 600;
+}
+
+.Small {
+  height: 30px;
+  width: 30px;
+  line-height: 28px;
+  font-size: 15px;
+}
+
+.Medium {
+  width: 45px;
+  height: 45px;
+  line-height: 42px;
+  font-size: 20px;
+}
+
+.Large {
+  height: 60px;
+  width: 60px;
+  line-height: 56px;
+  font-size: 30px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.bgPrimary {
+  background-color: $primary-color;
+}
+
+.bgSecondary {
+  background-color: $secondary-color;
+}
+
+.bgWarning {
+  background-color: $warning;
+}
+
+.bgSuccess {
+  background-color: $success;
+}
+
+.bgDanger {
+  background-color: $danger;
+}
+
+.borderPrimary {
+  border: 3px solid $primary-color;
+}
+
+.borderSecondary {
+  border: 3px solid $secondary-color;
+}
+
+.borderWarning {
+  border: 3px solid $warning;
+}
+
+.borderSuccess {
+  border: 3px solid $success;
+}
+
+.borderDanger {
+  border: 3px solid $danger;
+}
+
+.textWhite {
+  color: white;
+}
+
+.textBlack {
+  color: black;
+}
+
+.textPrimary {
+  color: $primary-color;
+}
+
+.textSecondary {
+  color: $secondary-color;
+}
+
+.textWarning {
+  color: $warning;
+}
+
+.textSuccess {
+  color: $success;
+}
+
+.textDanger {
+  color: $danger;
+}

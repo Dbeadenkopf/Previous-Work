@@ -1,0 +1,163 @@
+.projectContainer {
+  @include bp-lg {
+    width: 60%;
+  }
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.projectDetails {
+  border: 2px $warning solid;
+  border-radius: $mediumBorderRadius;
+  padding: 20px 40px 20px 40px;
+}
+
+.editProjectLogo {
+  float: right;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.projectLogo {
+  font-size: 25px;
+}
+
+.logoText {
+  font-size: 15px;
+  color: $t1cgGrey;
+}
+
+.projectLabel {
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.projectInfo {
+  @include bp-sm {
+    row-gap: 0;
+  }
+  row-gap: 10px;
+  display: grid;
+  grid-auto-rows: 20px;
+  padding-bottom: 40px;
+  margin-left: 70px;
+  margin-top: -70px;
+
+  .projectLead {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.active {
+  color: green;
+}
+
+.archived {
+  color: red;
+}
+
+.subProjects {
+  @include bp-xlg {
+    margin-left: 110px;
+  }
+  padding-top: 20px;
+  @include bp-sm {
+    padding-top: 0;
+  }
+}
+
+.removeProjectLogo {
+  color: orange;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.addNewSubProject {
+  @include bp-xlg {
+    margin-left: 170px;
+  }
+  cursor: pointer;
+  color: $t1cgDarkGrey;
+  font-size: 30px;
+}
+
+.addNewSubProjectText {
+  font-size: 18px;
+  color: $secondary-color;
+  cursor: pointer;
+  right: -8px;
+  position: relative;
+  top: -4px;
+}
+
+@for $i from 1 through 3 {
+  Table tr:nth-child(3n + #{$i}) {
+    @if $i == 1 {
+      .subProjectLogo {
+        color: $primary-color;
+      }
+    }
+
+    @if $i == 2 {
+      .subProjectLogo {
+        color: $warning;
+      }
+    }
+
+    @if $i == 3 {
+      .subProjectLogo {
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+.archiveContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .archiveHeader {
+    font-size: 20px;
+  }
+}
+
+.addSubProjectModalContainer {
+  padding: 1em;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+@media only screen and (max-width: $sm) {
+  .addSubProjectModalContainer {
+    padding: 1em 1em 2em 0.5em;
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.addModalInputDiv {
+  display: inline-block;
+  line-height: 20px;
+  input {
+    margin: 0;
+  }
+}

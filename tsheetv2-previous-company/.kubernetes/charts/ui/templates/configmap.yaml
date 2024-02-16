@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  {{ if eq .Values.environment "prod" }}
+  env.js: |
+    window.TIMESHEET_API_URL="https://timesheet.t1cg.io/api";
+    window.TIMESHEET_OAUTH2_CLIENT_ID="931006364133-hbsg0d6k6petrn7mh6ik1h3e2ed7o5ff.apps.googleusercontent.com"
+  {{ else }}
+  env.js: |
+    window.TIMESHEET_API_URL="https://sprint-tsheetv2.t1cg.codes/api";
+    window.TIMESHEET_OAUTH2_CLIENT_ID="931006364133-hbsg0d6k6petrn7mh6ik1h3e2ed7o5ff.apps.googleusercontent.com"
+  {{ end }}

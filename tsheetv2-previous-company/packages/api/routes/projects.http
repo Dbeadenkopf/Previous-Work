@@ -1,0 +1,57 @@
+@managerId = 6260398787e18312af05e68d
+
+###
+GET {{host}}/projects
+
+###
+PUT {{host}}/projects
+
+{
+    "lead": "{{userId}}",
+    "label": "BZ",
+    "name": "Beauty Zone"
+}
+
+###
+GET {{host}}/projects/{{projectId}}
+
+###
+PUT {{host}}/projects/{{projectId}}/archived
+
+{
+  "userId": "{{managerId}}"
+}
+
+###
+PUT {{host}}/projects/{{projectId}}/active
+
+{
+  "userId": "{{managerId}}"
+}
+
+###
+PUT {{host}}/projects/{{projectId}}/subprojects
+
+{
+  "subLabel": "STV",
+  "subName": "Steve",
+  "projectId": "62607cbed7d2b193f8e30dcc",
+  "action": "add"
+}
+
+###
+PUT {{host}}/projects/{{projectId}}/subprojects
+
+{
+  "subLabel": "STV",
+  "subName": "Steve",
+  "projectId": "62607cbed7d2b193f8e30dcc",
+  "action": "delete"
+}
+
+###
+PUT {{host}}/projects/{{projectId}} 
+
+{
+  "lead": "{{managerId}}"
+}

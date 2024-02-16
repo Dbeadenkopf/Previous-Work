@@ -1,0 +1,32 @@
+.remindMe {
+  margin: 0 0 4px 15px;
+  color: gray;
+  font-size: 11.5px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  column-gap: 2px;
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; /* Remove default arrow */
+    background: white;
+    background-image: url('../../assets/svg/drop_down_arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    height: 30px;
+    background-size: 15px;
+    padding: 0 10px;
+    border: unset;
+    color: gray;
+  }
+}
+
+.setButton {
+  min-height: 30px;
+  border-radius: 6px;
+}

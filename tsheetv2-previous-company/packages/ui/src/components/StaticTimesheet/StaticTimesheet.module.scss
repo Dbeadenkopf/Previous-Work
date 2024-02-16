@@ -1,0 +1,47 @@
+.staticTimesheetContainer {
+  max-width: 800px;
+  margin: 48px auto 0;
+  border-radius: $largeBorderRadius;
+  border: 1px solid rgba($t1cgDarkGrey, 0.2);
+  color: rgba($t1cgDarkGrey, 0.8);
+  padding: 32px;
+
+  overflow-x: auto;
+}
+
+.staticTimesheetTableHeader {
+  display: none;
+
+  @include bp-md {
+    display: grid;
+  }
+}
+
+.staticTimesheetEntry {
+  display: block;
+  padding: 12px;
+
+  &:nth-child(even):not(:first-of-type) {
+    background: $t1cgGrey;
+
+    @include bp-md {
+      background: inherit;
+    }
+  }
+
+  @include bp-md {
+    display: grid;
+    min-width: 700px;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 8px;
+    padding: 0;
+  }
+}
+
+.staticTimesheetDay {
+  margin-bottom: 40px;
+}
+
+.staticTimesheetHeading {
+  text-transform: uppercase;
+}
