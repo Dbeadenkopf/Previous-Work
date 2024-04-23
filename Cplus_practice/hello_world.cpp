@@ -1,115 +1,41 @@
-// we will be implementing the FizzBuzz problem
+// lets do the fizzbuzz problem
 #include <iostream>
 #include <vector>
 #include <string>
-#include <cmath>
-
-const double PI = 3.14159;
 
 using namespace std;
 
-
-
-class Shape{
-
-    public:
-        // initilized pure vitual function 
-        virtual double calculateArea() const = 0; 
-        virtual double calculatePerimeter() const = 0;
-
-};
-
-
-class Circle : public Shape{
-
-
-    private:
-        double radius;
-    public:
-        Circle(double r){
-            radius = r;
+vector<string> FizzBuzz(int N){
+    vector<string> results;
+    for (int i = 0; i < N; i++){
+        if (i % 3 == 0 && i % 5 == 0){
+            results.push_back("Fizzbuzz");
         }
-        double getR() const{
-            return radius;
+        else if (i % 3 == 0){
+            results.push_back("Fizz");
         }
-        double calculateArea() const override{
-            return 2 * pow(radius,2);
+        else if (i % 5 == 0){
+            results.push_back("Buzz");
+        }else{
+            results.push_back(to_string(i));
         }
-        double calculatePerimeter() const override{
-            return 2 * PI * radius;
-        }
+        
+    }
+    return results;
+}
 
 
 
-};
-
-
-class Rectangle : public Shape {
-
-    private:
-        double length;
-        double width;
-
-    public:
-        Rectangle(double L, double W){
-            length = L;
-            width = W;
-        }
-        double calculateArea() const override{
-            return length*width;
-        }
-        double calculatePerimeter() const override{
-            return 2 * (length + width);
-        }
-};
-
-
-
-class Triangle : public Shape{
-
-    private:
-        double side1;
-        double side2;
-        double side3;
-    public:
-        Triangle(double s1,double s2, double s3){
-            side1= s1;
-            side2 = s2;
-            side3 = s3;
-        }
-        double calculateArea() const override{
-            double s = (side1+side2+side3)/2;  /// first calculate the semi-perimater
-            return sqrt(s * (s - side1) * (s - side2) * (s - side3));// Calculate the area using Herons Formula 
-        }
-        double calculatePerimeter() const override{
-            return (side1 + side2 + side3);
-        }
-
-
-
-
-};
 
 
 int main(){
-    double my_radius;
-    my_radius = 4.0;
-    cout << "The first shape is the Circle" << endl;
-    Circle myCircle(my_radius);
-    cout << "The area of this circle is: " << myCircle.calculateArea() << endl;
-    cout << "The perimeter of this circle is: " << myCircle.calculatePerimeter() << endl;
+    int n = 15;
+    vector<string> results = FizzBuzz(n);
 
-
-    cout << "\t\tThe next shape is rectangle\t\t" << endl;
-    Rectangle myRec(3.0,2.5);
-    cout << "The area of this rectangle is: " << myRec.calculateArea() << endl;
-    cout << "The perimeter of this rectangle is: " << myRec.calculatePerimeter() << endl;
-
-    cout << "\t\tThe next shape is Traingle\t\t" << endl;
-    Triangle myTriangle(2.0,3.4,5.7);
-    cout << "The area of this triangle is " << myTriangle.calculateArea() << endl;
-    cout << "The Perimeter of this triangle is " << myTriangle.calculatePerimeter() << endl;
+    for(int i = 0; i < n; i++){
+        cout << results[i] << endl;
+    }
 
     return 0;
-    
 }
+

@@ -1,0 +1,135 @@
+Q1 - Fix or improve the implementation of the below methods
+
+(BEFORE)
+local function releaseStorage(player)
+player:setStorageValue(1000, -1)
+end
+
+function onLogout(player)
+if player:getStorageValue(1000) == 1 then
+addEvent(releaseStorage, 1000, player)
+end
+return true
+end
+
+(AFTER)
+Explanation: I beileve making the logic section inline improves readabilty
+as well as execution speed
+local function releaseStorage(player)
+player:setStorageValue(1000, -1)
+end
+
+function onLogout(player)
+return (player:getStorageValue(1000) == 1) ? addEvent(releaseStorage, 1000, player) : true;
+end
+
+
+
+Q2 - Fix or improve the implementation of the below method
+(Before)
+function printSmallGuildNames(memberCount)
+-- this method is supposed to print names of all guilds that have less than memberCount max members
+local selectGuildQuery = "SELECT name FROM guilds WHERE max_members < %d;"
+local resultId = db.storeQuery(string.format(selectGuildQuery, memberCount))
+local guildName = result.getString("name")
+print(guildName)
+end
+
+(AFTER)
+Explanation: There wasnt much to change in terms of logic but making 
+a small change to the variable name just adds for extra careful readabilty in my opnion
+also keeps things constant with the function protocal itself.
+function printSmallGuildNames(memberCount)
+-- this method is supposed to print names of all guilds that have less than memberCount max members
+local selectGuildQuery = "SELECT name FROM guilds WHERE max_members < %d;"
+local resultId = db.storeQuery(string.format(selectGuildQuery, memberCount))
+local smallguildName = result.getString("name")
+print(smallguildName)
+end
+
+
+Q3 - Fix or improve the name and the implementation of the below method
+(BEFORE)
+function do_sth_with_PlayerParty(playerId, membername)
+player = Player(playerId)
+local party = player:getParty()
+
+for k,v in pairs(party:getMembers()) do
+if v == Player(membername) then
+party:removeMember(Player(membername))
+end
+end
+end
+
+
+(AFTER)
+Explanation: Althought a simple change, renaming the function was needed. The older
+name was a little too long. 
+function interact_PlayerParty(playerId, membername)
+player = Player(playerId)
+local party = player:getParty()
+
+for k,v in pairs(party:getMembers()) do
+if v == Player(membername) then
+party:removeMember(Player(membername))
+end
+end
+end
+
+
+
+Q4 - Assume all method calls work fine. Fix the memory leak issue in below method
+(BEFORE)
+void Game::addItemToPlayer(const std::string& recipient, uint16_t itemId)
+{
+Player* player = g_game.getPlayerByName(recipient);
+if (!player) {
+player = new Player(nullptr);
+if (!IOLoginData::loadPlayerByName(player, recipient)) {
+return;
+}
+
+}
+
+Item* item = Item::CreateItem(itemId);
+if (!item) {
+return;
+}
+
+g_game.internalAddItem(player->getInbox(), item, INDEX_WHEREEVER, FLAG_NOLIMIT);
+
+if (player->isOffline()) {
+IOLoginData::savePlayer(player);
+}
+}
+
+(AFTER)
+Explanation: In order to solve memory leaks by going through the file itself, 
+you have to make sure you deallocate all the allocation that you have used and
+have no use for. In this case its the player pointer of class player. Just adding 
+a simple [delete player] will rightfully deallocated the allocation and in turn 
+getting rid of the memmory leak. One could also do the basic brute force and save
+a better state of the code before the bug and delete the buged file all together. 
+void Game::addItemToPlayer(const std::string& recipient, uint16_t itemId)
+{
+Player* player = g_game.getPlayerByName(recipient);
+if (!player) {
+player = new Player(nullptr);
+if (!IOLoginData::loadPlayerByName(player, recipient)) {
+return;
+}
+}
+delete player 
+
+Item* item = Item::CreateItem(itemId);
+if (!item) {
+return;
+}
+
+g_game.internalAddItem(player->getInbox(), item, INDEX_WHEREEVER, FLAG_NOLIMIT);
+
+if (player->isOffline()) {
+IOLoginData::savePlayer(player);
+}
+}
+
