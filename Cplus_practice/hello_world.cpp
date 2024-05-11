@@ -1,27 +1,23 @@
-// lets do the fizzbuzz problem
+// lets make a program to find and replace a specific word in a text file
 #include <iostream>
-#include <vector>
-#include <string>
+#include <fstream>
 
 using namespace std;
 
-vector<string> FizzBuzz(int N){
-    vector<string> results;
-    for (int i = 0; i < N; i++){
-        if (i % 3 == 0 && i % 5 == 0){
-            results.push_back("Fizzbuzz");
+
+void displayFileContents(const string & filename){
+    ifstream outputFile(filename);
+    if(outputFile.is_open()){
+        string line;
+        while(getline(outputFile,line)){
+            cout << line << "\n";
         }
-        else if (i % 3 == 0){
-            results.push_back("Fizz");
-        }
-        else if (i % 5 == 0){
-            results.push_back("Buzz");
-        }else{
-            results.push_back(to_string(i));
-        }
-        
+
+        outputFile.close();
+    }else{
+        cout << "There was a problem with opening this file " << endl;
     }
-    return results;
+    
 }
 
 
@@ -29,13 +25,12 @@ vector<string> FizzBuzz(int N){
 
 
 int main(){
-    int n = 15;
-    vector<string> results = FizzBuzz(n);
-
-    for(int i = 0; i < n; i++){
-        cout << results[i] << endl;
+    ifstream inputFile("dbz.txt");
+    ofstream outputFile("dbz_new.txt");
+    if(inputFile.is_open() && outputFile.is_open()){
+        string line;
     }
+
 
     return 0;
 }
-

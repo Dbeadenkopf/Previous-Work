@@ -1,6 +1,7 @@
 // THis is where most of the game logic will
 // happen which means moving , take overs, etc
 import { useEffect, useState } from "react";
+import ScoreBoard from "./components/scoreBoard.js";
 import blueCandy from './images/blue-candy.png';
 import orangeCandy from './images/orange-candy.png';
 import greenCandy from './images/green-candy.png';
@@ -27,16 +28,21 @@ const App = () => {
 
   // for replacing the sqaure that was dragged and dropped
   const [squareBeingReplaced, setSqaureBeingReplaced] = useState(null);
+
+  // for keeping the scores for each column and rows of three and four
+  const [scoreDisplay , setScoreDisplay] = useState(0);  
   // first logic (checking for all three)
   const checkForColumnOfThree = () => {
     for (let i = 0; i <= 47; i++) {
       const columnOfThree = [i, i + width, i + width * 2]; // this is our column check
       const decidedColor = currentColor[i]; // grabbing first item in colors
+      const isBlank = currentColor[i] === blank
 
       if (
-        columnOfThree.every((square) => currentColor[square] === decidedColor)
+        columnOfThree.every((square) => currentColor[square] === decidedColor && !isBlank)
       ) {
-        columnOfThree.forEach((square) => (currentColor[square] = ''));
+        setScoreDisplay((score) => score + 3) 
+        columnOfThree.forEach((square) => (currentColor[square] = blank));
         return true; // so we can reuse this function
       }
     }
@@ -51,7 +57,8 @@ const App = () => {
       if (
         columnOfFour.every((square) => currentColor[square] === decidedColor)
       ) {
-        columnOfFour.forEach((square) => (currentColor[square] = ''));
+        setScoreDisplay((score) => score + 4) // each time there is a match improve the score
+        columnOfFour.forEach((square) => (currentColor[square] = blank));
         return true;
       }
     }
@@ -68,7 +75,8 @@ const App = () => {
       if (notValid.includes(i)) continue; // if its not valid then dont check
 
       if (rowOfThree.every((square) => currentColor[square] === decidedColor)) {
-        rowOfThree.forEach((square) => (currentColor[square] = ''));
+        setScoreDisplay((score) => score + 3) 
+        rowOfThree.forEach((square) => (currentColor[square] = blank));
         return true;
       }
     }
@@ -85,11 +93,16 @@ const App = () => {
       if (notValid.includes(i)) continue; // if its not valid then dont check
 
       if (rowOfFour.every((square) => currentColor[square] === decidedColor)) {
-        rowOfFour.forEach((square) => (currentColor[square] = ''));
+        setScoreDisplay((score) => score + 4) 
+        rowOfFour.forEach((square) => (currentColor[square] = blank));
         return true;
       }
     }
   };
+
+// checking the score on the console
+  console.log(scoreDisplay);
+
 
   // Use dragstart to have the ID we are dragging 
   const dragStart = (e) => {
@@ -166,14 +179,14 @@ const App = () => {
       // The syntax below is used for in case the top is empty we need tommove down
       const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
       const isFirstRow = firstRow.includes(i); // Holding on to the first row
-      if (isFirstRow && currentColor[i] === "") {
+      if (isFirstRow && currentColor[i] === blank) {
         let randomNumber = Math.floor(Math.random() * candyColors.length);
         currentColor[i] = candyColors[randomNumber];
       }
-      if ((currentColor[i + width]) === "") {
+      if ((currentColor[i + width]) === blank) {
         // if below sqaure is blank
         currentColor[i + width] = currentColor[i]; // go ahead and move it down
-        currentColor[i] = ""; // after that move that would mean the above one is blank
+        currentColor[i] = blank; // after that move that would mean the above one is blank
       }
     }
   };
@@ -230,6 +243,7 @@ const App = () => {
           />
         ))}
       </div>
+        <ScoreBoard score={scoreDisplay}/>
     </div>
   );
 };
