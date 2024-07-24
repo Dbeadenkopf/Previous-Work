@@ -1,11 +1,8 @@
+// this file will include all of our fileio practice
 #include <iostream>
-#include <cmath>
-#include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <vector>
-// write a c++ program to find and replace a specific word in a textfile
-
 using namespace std;
 
 void displayFileContents(const string & filename){
@@ -15,137 +12,132 @@ void displayFileContents(const string & filename){
         while(getline(inputFile, line)){
             cout << line << endl;
         }
-        inputFile.close();
-    }else{
-        cout << "There was a problem with opening this file " << endl;
-    }             
-}
-
-
-// write a c++ to copy the contents of one file to antoher
-void copyFileContents(const string & filename){
-    ifstream inputFile(filename);
-    ofstream outputFile("dbz_copied.txt");
-    if(inputFile.is_open() && outputFile.is_open()){
-        string line;
-        while(getline(inputFile,line)){
-            outputFile << line << endl;
-        }
 
         inputFile.close();
-        outputFile.close();
-        cout << "File was copied successfully " << endl;
     }else{
-        cout << "There was a problem with opening the file " << endl;
+        cout << "There was a problem with opening the file" << endl;
     }
 }
 
-// make a c++ prgram to find and replace a specific word in a text file 
+
+
+
+
+void addtoFile(const string & filename){
+    ofstream outputFile;
+    outputFile.open(filename, ios::app);
+    if(outputFile.is_open()){
+        string newData;
+        cout << "Add new info to file: ";
+        getline(cin,newData);
+        outputFile << newData << endl;
+
+        outputFile.close();
+        cout << "\t\t Data added successfully \t\t\n";
+        displayFileContents(filename);
+    }else{
+        cout << "There was a problem with opening your file " << endl;
+    }
+}
+
+
+
+int countwordsinFile(const string & filename){
+    ifstream inputFile(filename);
+    if(inputFile.is_open()){
+        string line;
+        int wordCounter = 0;
+        while(getline(inputFile, line)){
+            stringstream ss(line);
+            while(ss >> line){
+                wordCounter++;
+            }
+        }
+        inputFile.close();
+        cout << "Words have been successfully count! " << endl;
+        return wordCounter;
+    }else{
+        cout << "There was a problem with opening this file " << endl;
+    }
+    return 0;
+}
+
+
+// lets change a specified word in a .txt file 
 void findandReplace(const string & filename){
     ifstream inputFile(filename);
     ofstream outputFile("dbz_replaced.txt");
     if(inputFile.is_open() && outputFile.is_open()){
         string line;
-        string searchWord = "Vegito";
-        string replaceWord = "Super Vegito";
+        string searchWord = "Goku";
+        string replaceWord = "Kakorot";
         while(getline(inputFile,line)){
             size_t pos = line.find(searchWord);
-            while(pos!=string::npos){
+            while(pos!= string::npos){
                 line.replace(pos, searchWord.length(), replaceWord);
                 pos = line.find(searchWord, pos + replaceWord.length());
             }
-            outputFile << line << endl;
+            outputFile << line << "\n";
         }
+
         inputFile.close();
         outputFile.close();
-        cout << "Find and replace was a success" << endl;
+        cout << "Find and Replace has been successful " << endl;
         displayFileContents("dbz_replaced.txt");
-    }
-}
-
-
-// lets make a program that can append data to an exisiting file 
-void addDataToFile(const string & filename){
-    ofstream outputFile;
-    outputFile.open(filename, ios::app);
-    if(outputFile.is_open()){
-        string newData;
-        cout << "Enter the data to be added to the file: ";
-        getline(cin,newData);
-        outputFile << newData << endl;
-        outputFile.close();
-        cout << "Data was successfully added " << endl;
-        displayFileContents(filename);
     }else{
-        cout << "There was a problem with opening this file " << endl;
+        cout << "There was a problem with opening the files " << endl;
     }
 }
 
 
-
-// lets sort the lines of a text file
-void sortlinesofFile(const string & filename){
-    ifstream inputFile(filename);
-    ofstream outputFile("dbz_sorted.txt");
-    if(inputFile.is_open() && outputFile.is_open()){
-        vector<string> lines;
-        string line;
-        while(getline(inputFile,line)){
-            lines.push_back(line);
+void encryptFile(const string & inputFile, const string & outputFile){
+    ifstream input(inputFile);
+    ofstream output(outputFile);
+    if(input.is_open() && output.is_open()){
+        char ch;
+        while(input.get(ch)){
+            ch++;
+            output.put(ch);
         }
-        sort(lines.begin(), lines.end());
-        copy(lines.begin(), lines.end(), ostream_iterator<string>(outputFile, "\n"));
-        inputFile.close();
-        outputFile.close();
-        cout << "Lines of file were sorted successfully " << endl;
-        displayFileContents("dbz_sorted.txt");
+
+        input.close();
+        output.close();
+        cout << "File encrypted successfully " << endl;
     }else{
-        cout << "There was a problem with opening the file " << endl;
+        cout << "Failed to open files " << endl;
     }
 }
 
-// lets make a program that can merge files together 
-void mergeFilesTogether(const string & filename){
-    vector<string> inputFiles;
-    inputFiles.push_back("test4.txt");
-    inputFiles.push_back("test3.txt"); 
-    inputFiles.push_back("test2.txt");
-    inputFiles.push_back("test1.txt");
 
-    cout << "The contents of test1-4.txt are " << endl;
-    displayFileContents("test1.txt");
-    displayFileContents("test2.txt");
-    displayFileContents("test3.txt");
-    displayFileContents("test1.txt");
-
-    string outputFile = "merged_test_file.txt";
-    ofstream mergedFile(outputFile);
-    if(mergedFile.is_open()){
-        for(const auto & inputFile: inputFiles){
-            ifstream inputFileStream(inputFile);
-            if(inputFileStream.is_open()){
-                string line;
-                while(getline(inputFileStream, line)){
-                    mergedFile << line << "\n";
-                }
-                inputFileStream.close();
-            }else{
-                cout << "Failed to open input file: " << inputFile << endl;
-            }
+void decryptFile(const string & inputFile, const string & outputFile){
+    ifstream input(inputFile);
+    ofstream output(outputFile);
+    if(input.is_open() && output.is_open()){
+        char ch;
+        while(input.get(ch)){
+            ch--;
+            output.put(ch);
         }
-        mergedFile.close();
-        cout << "\nFiles merged successfully. " << endl;
-        cout << "\nContent of the merged file: " << endl;
-        displayFileContents("merged_test_file.txt");
+
+        input.close();
+        output.close();
+        cout << "\t\t File was encrypted successfully \t\t\n";
     }else{
-        cout << "There was a problem with opening this file " << endl;
+        cout << "File to open files " << endl;
     }
 }
+
+// lets take a CSV or spreadsheet document and display if in tabular form
+vector<string> splitString(const string & fileName, strin str)
+
+
 int main(){
-   mergeFilesTogether("test1.txt");
-    //sortlinesofFile("dbz.txt");
-    //addDataToFile("dbz.txt");
-    //findandReplace("dbz.txt");
-   // copyFileContents("dbz.txt");
+    string first_File = "dbz_encrypted.txt";
+    string second_File = "dbz_decrypted.txt";
+   // encryptFile(first_File, second_File);
+   // decryptFile(first_File, second_File);
+    displayFileContents(second_File);
+
+
     return 0;
 }

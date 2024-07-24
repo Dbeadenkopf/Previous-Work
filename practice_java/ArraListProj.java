@@ -6,12 +6,15 @@ public class ArraListProj {
 
     public static void main(String[] args){
        
-        ArrayList Heros = new ArrayList();
-        Heros.add("Batman");
-        Heros.add("Spiderman");
-        Heros.add("The Flash");
+        ArrayList<String> producE = new ArrayList<String>();
+        
+        producE.add("Apple");
+        producE.add("Pear");
+        producE.add("Banana");
 
-        System.out.println("Here are your Heros: " + Heros);
+        System.out.println(producE);
+        String myFruit = producE.get(1);
+        System.out.println(myFruit);
         
     }
 }
