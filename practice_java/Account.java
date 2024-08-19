@@ -1,29 +1,27 @@
+// this will be the class that has the account name, account number, and the balance of the account
 import java.util.*;
 
-public class Account {
-    // name of the account holder
-    private String name;
-    // the account number 
-    private String accountNumber;
-    // the account balance 
-    private double balance;
 
-    public Account(String n, String aN, double B){
-        this.name = n;
-        this.accountNumber = aN;
-        this.balance = B;
+public class Account {
+    
+    private String name;
+    private String account_Number;
+    private double account_Balance;
+
+    public Account(String N, String aN, double aB){
+        this.name = N;
+        this.account_Number = aN;
+        this.account_Balance = aB;
     }
 
     public String getName(){
         return name;
     }
-
     public String getAccNum(){
-        return accountNumber;
+        return account_Number;
     }
-
-    public double getBal(){
-        return balance;
+    public double getAccBal(){
+        return account_Balance;
     }
 
     public void setName(String N){
@@ -31,26 +29,22 @@ public class Account {
     }
 
     public void setAccNum(String aN){
-        this.accountNumber = aN;
+        this.account_Number = aN;
+    }
+    public void setAccBal(double aB){
+        this.account_Balance = aB;
     }
 
-    public void setAccBal(double B){
-        this.balance = B;
-    }
-
-    // account class method to deposit money
     public void deposit(double amount){
-        balance = balance+amount;
+        account_Balance = account_Balance + amount;
     }
 
-    // account class method to withdraw money
     public void withdraw(double amount){
-        balance = balance - amount;
+        account_Balance = account_Balance - amount;
     }
 
-    // account class method to display information
-    public String displayInformation(){
-        return ("Name: " + name + ", Account Number: " + accountNumber + " , Balance: " + balance);
+    public String getAccountInformation(){
+        return ("Name: " + name + " Account#: " + account_Number + " Balance: " + account_Balance);
     }
     
 }

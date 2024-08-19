@@ -1,8 +1,4 @@
-// this program will implement the Bubblesort algoritm
-// the bubble sort algorithm has a runtime of O(n^2) given 
-// we must traverse the array twice 
-
-public class Bubblesort{
+public class BubbleSort {
 
     public static void bubbleSort(int[] arr){
         int n = arr.length;
@@ -17,9 +13,9 @@ public class Bubblesort{
         }
     }
 
-    public static void displayArr(int[] arr){
+    public static void displayArray(int[] arr){
         int n = arr.length;
-        for(int i = 0; i < n; ++i){
+        for(int i = 0; i < n;++i){
             System.out.println(arr[i] + " ");
         }
         System.out.println();
@@ -27,10 +23,12 @@ public class Bubblesort{
 
 
 
+
     public static void main(String[] args) {
-        int[] arr = { 44, 3, 20, 11, 54, 22};
+        int[] arr = {34, 14, 12, 3, 42, 5};
         bubbleSort(arr);
-        System.out.println("Array Sorted: ");
-        displayArr(arr);
+        System.out.println("The sorted array: ");
+        displayArray(arr);
+        
     }
 }
